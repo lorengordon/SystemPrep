@@ -63,64 +63,47 @@ version: <string, version of the sctm>
 datamodel: <string, version of the data model>
 projects: <dictionary of projects>
   <project name>:
-    targets: <list of target OS or application versions for the project as a whole>
-    controls:
-      <control ref>:
-        name: <control name>
-        type: <control type>
-        source_ref: <list of common source references for the configuration>
-        implementation: <list of dictionaries containing implementation details>
-          - action: <string describing the configuration being applied>
-            parameters: <list of parameters to apply to the action>
-            targets: <optional list of targets for this specific configuration, overrides control targets>
-            source_ref: <optional list of source reference overrides for the configuration>
-          - action: <string describing the configuration being applied>
-            parameters: <list of parameters to apply to the action>
-            targets: <optional list of targets for this specific configuration, overrides control targets>
-            source_ref: <optional list of source reference overrides for the configuration>
-      <control ref>:
-        name: <control name>
-        type: <control type>
-        source_ref: <list of common source references for the configuration>
-        implementation: <list of dictionaries containing implementation details>
-          - action: <string describing the configuration being applied>
-            parameters: <list of parameters to apply to the action>
-            targets: <optional list of targets for this specific configuration, overrides control targets>
-            source_ref: <optional list of source reference overrides for the configuration>
-          - action: <string describing the configuration being applied>
-            parameters: <list of parameters to apply to the action>
-            targets: <optional list of targets for this specific configuration, overrides control targets>
-            source_ref: <optional list of source reference overrides for the configuration>
-
-  <project name>:
-    targets: <list of target OS or application versions for the project as a whole>
-    controls:
-      <control ref>:
-        name: <control name>
-        type: <control type>
-        source_ref: <list of common source references for the configuration>
-        implementation: <list of dictionaries containing implementation details>
-          - action: <string describing the configuration being applied>
-            parameters: <list of parameters to apply to the action>
-            targets: <optional list of targets for this specific configuration, overrides control targets>
-            source_ref: <optional list of source reference overrides for the configuration>
-          - action: <string describing the configuration being applied>
-            parameters: <list of parameters to apply to the action>
-            targets: <optional list of targets for this specific configuration, overrides control targets>
-            source_ref: <optional list of source reference overrides for the configuration>
-      <control ref>:
-        name: <control name>
-        type: <control type>
-        source_ref: <list of common source references for the configuration>
-        implementation: <list of dictionaries containing implementation details>
-          - action: <string describing the configuration being applied>
-            parameters: <list of parameters to apply to the action>
-            targets: <optional list of targets for this specific configuration, overrides control targets>
-            source_ref: <optional list of source reference overrides for the configuration>
-          - action: <string describing the configuration being applied>
-            parameters: <list of parameters to apply to the action>
-            targets: <optional list of targets for this specific configuration, overrides control targets>
-            source_ref: <optional list of source reference overrides for the configuration>
+    targets: <dictionary of target OS or application environments for the project as a whole>
+      <target>:
+        controls: <dictionary of controls>
+          <control ref>:
+            name: <string, control name>
+            type: <string, control type>
+            implementation: <list of dictionaries containing implementation details>
+              - states: <string or list, states that implement the control>
+                validation: <string or list, tests or references to sources containing the test>
+                source_refs: <list of dictionaries containing source requirements>
+                  - source: <string, source from which the requirement was derived>
+                    datakey: <string, lookup key from the source:data dictionary>
+                    datavalue: <string, lookup value from the source:data dictionary>
+              - states: <string or list, states that implement the control>
+                validation: <string or list, tests or references to sources containing the test>
+                source_refs: <list of dictionaries containing source requirements>
+                  - source: <string, source from which the requirement was derived>
+                    datakey: <string, lookup key from the source:data dictionary>
+                    datavalue: <string, lookup value from the source:data dictionary>
+sources: <dictionary of sources>
+  <source name>:
+    version: <string, source version>
+    data: '<list of dictionaries of source data relevant to this control;
+            data elements are specific to the source;
+            this example includes relevant elements from the DISA STIG>'
+      - stigid:
+        vulnid:
+        ruleid:
+        ruletitle:
+        discussion:
+        checkcontent:
+        fixtext:
+        ccidata:
+      - stigid:
+        vulnid:
+        ruleid:
+        ruletitle:
+        discussion:
+        checkcontent:
+        fixtext:
+        ccidata:
 ```
 
 The SCTM data may be found in the [SCTM.yml](SCTM.yml) file.
